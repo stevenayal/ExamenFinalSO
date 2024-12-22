@@ -1,0 +1,11 @@
+# Dockerfile para Proceso más corto
+FROM python:3.9-slim
+
+WORKDIR /app
+COPY sjf_preemptivo.py /app/sjf_preemptivo.py
+COPY procesos.csv /app/procesos.csv
+
+ARG input_file="procesos.csv"
+ENV INPUT_FILE=${input_file}
+
+CMD ["python", "sjf_preemptive.py", "--file", "$INPUT_FILE"]

@@ -1,0 +1,17 @@
+# Usar una imagen base de Python
+FROM python:3.9-slim
+
+# Establecer el directorio de trabajo
+WORKDIR /app
+
+# Copiar los archivos necesarios
+COPY round_robin.py procesos.csv ./
+
+# Instalar dependencias si las hubiera (por ejemplo, pandas, si se usa)
+RUN pip install --no-cache-dir pandas
+
+# Establecer la variable de entorno para el quantum (se puede sobrescribir al correr el contenedor)
+ENV QUANTUM=2
+
+# Comando de ejecución del script
+CMD ["python", "round_robin.py"]
